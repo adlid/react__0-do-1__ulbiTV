@@ -1,17 +1,10 @@
 .post{
-    border: solid 2px rgb(236, 184, 135);
-    background-color: rgb(236, 228, 205);
+    border: solid 2px teal;
+    background-color: transparent;
     display: flex;
     justify-content: space-between;
     color: rgb(0, 0, 0);
     padding: 10px;
     margin-bottom: 10px;
 }
- .post__btn button{
-    border: none;
-    background-color: rgb(80, 76, 59);
-    padding: 10px 30px;
-    border-radius: 8px;
-    color: white;
-
-}
+ 
