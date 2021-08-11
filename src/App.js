@@ -1,5 +1,5 @@
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Counter  from "./components/counter";
 import PostForm from "./components/PostForm";
 import PostItem from "./components/PostItem";
@@ -18,6 +18,18 @@ function App() {
   ]);
   const [selectedSort, setSelectedSort] = useState('')
   const [searchQuery, setSearchQuery] = useState('')
+
+  function getSortedPosts(){
+    if(selectedSort){
+      return [...posts].sort((a,b)=>a[selectedSort].localeCompare(b[selectedSort]))
+    }
+    return posts
+  }
+
+  const sortedPosts = useMemo(()=>{
+
+  }, [selectedSort, posts])
+
   const createPost = (newPost) =>{
     setposts([...posts, newPost])
   }
@@ -28,7 +40,6 @@ function App() {
   }
   const sortPosts=(sort)=>{
     setSelectedSort(sort)
-    setposts([...posts].sort((a,b)=>a[sort].localeCompare(b[sort])))
    
   }
   return (
@@ -53,7 +64,7 @@ function App() {
       </div>
       {
         posts.length !==0 
-        ? <PostList remove={removePost} posts={posts }/>
+        ? <PostList remove={removePost} posts={sortedPosts }/>
         : <h1 style={{textAlign: 'center'}}>Посты не найдена</h1>
       }
      
